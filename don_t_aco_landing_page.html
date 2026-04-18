@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Don T. Aco | The Art of the “Worst” Deal</title>
+  <meta name="description" content="Political satire, T.A.C.O. breakdowns, and the book The Art of the “Worst” Deal by Don T. Aco." />
+  <style>
+    :root {
+      --bg: #0b0b0f;
+      --panel: #14141a;
+      --panel-2: #1c1c24;
+      --text: #f5f5f7;
+      --muted: #b7b7c2;
+      --accent: #ffb703;
+      --accent-2: #fb8500;
+      --line: rgba(255,255,255,0.08);
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(251,133,0,0.14), transparent 22%),
+        radial-gradient(circle at top left, rgba(255,183,3,0.12), transparent 26%),
+        linear-gradient(180deg, #09090c 0%, #0b0b0f 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(11,11,15,0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #0b0b0f;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      color: #111;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.03);
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 72px 0 54px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      margin: 0 0 18px;
+    }
+
+    .headline-accent {
+      display: block;
+      background: linear-gradient(135deg, var(--accent), #ffd166 45%, var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 62ch;
+      margin: 0 0 26px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .proof-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .proof-card strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -60px auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,183,3,0.28), transparent 65%);
+      pointer-events: none;
+    }
+
+    .book-cover {
+      aspect-ratio: 3 / 4;
+      width: 100%;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.35)),
+        linear-gradient(135deg, #2a2a34 0%, #0f1017 100%);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .book-cover .small {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #f1c76a;
+      opacity: 0.9;
+      margin-bottom: 12px;
+    }
+
+    .book-cover .title {
+      font-size: clamp(1.4rem, 3vw, 2.3rem);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .book-cover .subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 24ch;
+      margin: 0 auto 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    section {
+      padding: 28px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.16rem;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .quote {
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    .quote-box {
+      padding: 28px;
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,183,3,0.08), rgba(255,255,255,0.02));
+    }
+
+    .framework {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .step {
+      padding: 18px;
+      border-radius: 20px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .step .letter {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #111;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.96rem;
+    }
+
+    .cta-panel {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: center;
+      padding: 26px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,183,3,0.08), rgba(251,133,0,0.08), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .list li {
+      display: flex;
+      gap: 10px;
+      align-items: start;
+      color: var(--muted);
+    }
+
+    .list li::before {
+      content: "•";
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .footer {
+      padding: 36px 0 56px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-line {
+      height: 1px;
+      background: var(--line);
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .cta-panel,
+      .grid-3,
+      .framework {
+        grid-template-columns: 1fr;
+      }
+
+      .proof {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Don T. Aco home">
+        <span class="brand-mark">T</span>
+        <span>Don T. Aco</span>
+      </a>
+      <div class="nav-links">
+        <a href="#book">The Book</a>
+        <a href="#framework">T.A.C.O.</a>
+        <a href="#about">About</a>
+        <a class="btn btn-primary" href="https://www.amazon.com/dp/B0GXMWJVHY" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+      </div>
+    </div>
+          <a class="btn btn-secondary" href="https://www.tiktok.com/@don.t.aco" target="_blank" rel="noopener noreferrer">@don.t.aco</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Political satire • narrative breakdowns • public statements decoded</div>
+          <h1>
+            The man behind
+            <span class="headline-accent">The Art of the “Worst” Deal</span>
+          </h1>
+          <p>
+            Don T. Aco turns public political messaging into sharp satire. Using the T.A.C.O. framework, he breaks down press releases, speeches, and social posts to show how movement, headlines, and contradiction can be mistaken for strategy.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-secondary" href="https://www.tiktok.com/@don.t.aco" target="_blank" rel="noopener noreferrer">Follow @don.t.aco</a>
+            <a class="btn btn-primary" href="https://www.amazon.com/dp/B0GXMWJVHY" target="_blank" rel="noopener noreferrer">Get the Book</a>
+            <a class="btn btn-secondary" href="#framework">See the T.A.C.O. Method</a>
+          </div>
+          <div class="proof">
+            <div class="proof-card">
+              <strong>Satire with structure</strong>
+              <span>Not random jokes. A repeatable framework for reading public messaging.</span>
+            </div>
+            <div class="proof-card">
+              <strong>Built for short-form</strong>
+              <span>Clear, punchy concepts that translate cleanly into TikTok, Reels, and clips.</span>
+            </div>
+            <div class="proof-card">
+              <strong>Public-domain source material</strong>
+              <span>Focused on statements, speeches, press releases, and posts people can verify.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="book-cover" aria-label="Book cover placeholder">
+            <div>
+              <div class="small">By Don T. Aco</div>
+              <div class="title">THE ART OF THE “WORST” DEAL</div>
+              <div class="subtitle">Strategic Underperformance, Perpetual Negotiation, and Winning Without Outcomes</div>
+              <div class="badge">Outcome Optional</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="book">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>The Book</h2>
+            <p>A satirical field guide to public messaging, perpetual negotiation, and winning the headline before the outcome exists.</p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>What it is</h3>
+            <p>A satire built around a simple idea: activity can look like success when nobody remembers the original goal.</p>
+          </article>
+          <article class="card">
+            <h3>What it covers</h3>
+            <p>Headlines, policy reversals, social media doctrine, moving targets, legal loops, market framing, and perpetual conflict without resolution.</p>
+          </article>
+          <article class="card">
+            <h3>Why it lands</h3>
+            <p>It gives the audience a repeatable lens. Once they see the pattern, they start spotting it everywhere.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="quote-box">
+          <p class="quote">“If you announce the win before the deal, you’ve already lost the leverage.”</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="framework">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>The T.A.C.O. Method</h2>
+            <p>A simple framework for decoding public messaging when confidence arrives before clarity.</p>
+          </div>
+        </div>
+
+        <div class="framework">
+          <div class="step">
+            <div class="letter">T</div>
+            <strong>Tactical Announcement</strong>
+            <p>Say it before it exists. Frame the win early and let the headline do the work.</p>
+          </div>
+          <div class="step">
+            <div class="letter">A</div>
+            <strong>Amplification</strong>
+            <p>Let reactions spread. Commentary, outrage, support, and confusion all increase reach.</p>
+          </div>
+          <div class="step">
+            <div class="letter">C</div>
+            <strong>Continuous Oscillation</strong>
+            <p>Strong, flexible, stronger again. Contradiction becomes momentum when the story keeps moving.</p>
+          </div>
+          <div class="step">
+            <div class="letter">O</div>
+            <strong>Outcome (Optional)</strong>
+            <p>Completion is not always required. Continuation can outperform conclusion in the attention cycle.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap cta-panel">
+        <div>
+          <div class="eyebrow">About the character</div>
+          <h2 style="margin:0 0 12px; font-size: clamp(1.8rem, 3vw, 2.8rem); letter-spacing:-0.03em;">Don T. Aco</h2>
+          <p style="margin:0; color: var(--muted); max-width: 62ch;">
+            Don T. Aco is a satirical character voice built to interpret political statements through the logic of spectacle, leverage, contradiction, and narrative control. The style is exaggerated. The source material is public. The point is clarity.
+          </p>
+          <ul class="list">
+            <li>Sharp, satirical commentary rooted in public statements</li>
+            <li>Designed for books, clips, social content, and landing-page funnels</li>
+            <li>Centered on one question: what was actually said, and what does it really mean?</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="font-size:1.35rem; margin-bottom: 10px;">Start here</h3>
+          <p style="margin-bottom: 18px;">Read the book, understand the pattern, then follow the breakdowns as the next statement arrives.</p>
+          <div class="cta-row" style="margin:0;">
+            <a class="btn btn-primary" href="https://www.amazon.com/dp/B0GXMWJVHY" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+            <a class="btn btn-secondary" href="#top">Back to top</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-line"></div>
+      <div>© Don T. Aco. Satirical commentary project. This page is promotional and links to Amazon for purchase.</div>
+    </div>
+  </footer>
+</body>
+</html>
